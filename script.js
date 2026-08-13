@@ -114,8 +114,8 @@ async function downloadVCard() {
         const vCard = [
             "BEGIN:VCARD",
             "VERSION:3.0",
-            "N:Elfeki;Mohammed;;;",
-            "FN:Mohammed Elfeki",
+            "N:Elfeki;Eng. Mohammed;;;",
+            "FN:Eng. Mohammed Elfeki",
             "TITLE:Computer Engineer | Cybersecurity | DevOps",
             "TEL;TYPE=CELL,VOICE:+201001313915",
             "EMAIL;TYPE=INTERNET:mohammed.feki@gmail.com",
