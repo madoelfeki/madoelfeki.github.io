@@ -1,30 +1,116 @@
 async function downloadVCard() {
     try {
-        // Load your profile photo
+        // Load the profile photo
         const response = await fetch("mohammed-elfeki.png");
 
         if (!response.ok) {
             throw new Error("Could not load profile photo.");
         }
 
-        const imageBuffer = await response.arrayBuffer();
+        // Read the original image
+        const sourceBlob = await response.blob();
 
-        // Convert image to Base64
-        const bytes = new Uint8Array(imageBuffer);
+        // Decode image
+        const image = await createImageBitmap(sourceBlob);
 
-        let binary = "";
+        // Create a small canvas for the contact photo
+        const maxWidth = 240;
+        const maxHeight = 300;
 
-        const chunkSize = 0x8000;
+        const scale = Math.min(
+            maxWidth / image.width,
+            maxHeight / image.height,
+            1
+        );
 
-        for (let i = 0; i < bytes.length; i += chunkSize) {
-            binary += String.fromCharCode(
-                ...bytes.subarray(i, i + chunkSize)
-            );
+        const canvas = document.createElement("canvas");
+
+        canvas.width = Math.max(
+            1,
+            Math.round(image.width * scale)
+        );
+
+        canvas.height = Math.max(
+            1,
+            Math.round(image.height * scale)
+        );
+
+        const context = canvas.getContext("2d");
+
+        if (!context) {
+            throw new Error("Could not create image canvas.");
         }
 
-        const base64Image = btoa(binary);
+        // Draw the resized image
+        context.drawImage(
+            image,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
-        // vCard
+        // Convert to compressed JPEG
+        const optimizedPhotoBlob = await new Promise(
+            (resolve, reject) => {
+
+                canvas.toBlob(
+                    blob => {
+                        if (blob) {
+                            resolve(blob);
+                        } else {
+                            reject(
+                                new Error(
+                                    "Could not optimize profile photo."
+                                )
+                            );
+                        }
+                    },
+                    "image/jpeg",
+                    0.72
+                );
+
+            }
+        );
+
+        // Convert JPEG to Base64
+        const base64Image = await new Promise(
+            (resolve, reject) => {
+
+                const reader = new FileReader();
+
+                reader.onload = () => {
+
+                    const result =
+                        String(reader.result || "");
+
+                    const commaIndex =
+                        result.indexOf(",");
+
+                    resolve(
+                        commaIndex >= 0
+                            ? result.slice(commaIndex + 1)
+                            : result
+                    );
+                };
+
+                reader.onerror = () => {
+                    reject(
+                        new Error(
+                            "Could not encode profile photo."
+                        )
+                    );
+                };
+
+                reader.readAsDataURL(
+                    optimizedPhotoBlob
+                );
+            }
+        );
+
+        image.close();
+
+        // Build vCard
         const vCard = [
             "BEGIN:VCARD",
             "VERSION:3.0",
@@ -39,33 +125,45 @@ async function downloadVCard() {
             "URL;TYPE=Instagram:https://www.instagram.com/madoelfeki",
             "URL;TYPE=Facebook:https://www.facebook.com/mado.feki",
             "NOTE:Mindset for Engineering. Function & Structure.",
-            `PHOTO;ENCODING=b;TYPE=PNG:${base64Image}`,
+            `PHOTO;ENCODING=b;TYPE=JPEG:${base64Image}`,
             "END:VCARD"
         ].join("\r\n");
 
-        // Create downloadable VCF file
-        const blob = new Blob(
+        // Create the downloadable contact file
+        const vCardBlob = new Blob(
             [vCard],
-            { type: "text/vcard;charset=utf-8" }
+            {
+                type: "text/vcard;charset=utf-8"
+            }
         );
 
-        const url = URL.createObjectURL(blob);
+        const url =
+            URL.createObjectURL(vCardBlob);
 
-        const link = document.createElement("a");
+        const link =
+            document.createElement("a");
+
         link.href = url;
-        link.download = "Mohammed_Elfeki.vcf";
+        link.download =
+            "Mohammed_Elfeki.vcf";
 
         document.body.appendChild(link);
+
         link.click();
 
         document.body.removeChild(link);
+
         URL.revokeObjectURL(url);
 
     } catch (error) {
-        console.error("vCard generation failed:", error);
+
+        console.error(
+            "vCard generation failed:",
+            error
+        );
 
         alert(
-            "Unable to create the contact card. Please make sure the profile photo is available."
+            "Unable to create the contact card. Please try again."
         );
     }
 }
