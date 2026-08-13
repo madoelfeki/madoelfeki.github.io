@@ -1,7 +1,7 @@
 async function downloadVCard() {
     try {
         // Load your profile photo
-        const response = await fetch("assets/mohammed-elfeki.png");
+        const response = await fetch("mohammed-elfeki.png");
 
         if (!response.ok) {
             throw new Error("Could not load profile photo.");
