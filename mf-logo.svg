@@ -1,9 +1,0 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M105 385V142L256 278L350 195" stroke="#FFFFFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"></path>
-
-    <path d="M350 195H432" stroke="#00C8FF" stroke-width="42" stroke-linecap="square"></path>
-
-    <path d="M286 385V278L350 218V385" stroke="#FFFFFF" stroke-width="42" stroke-linecap="square" stroke-linejoin="miter"></path>
-
-    <path d="M330 249L356 224" stroke="#00C8FF" stroke-width="18" stroke-linecap="square"></path>
-</svg>
