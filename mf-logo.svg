@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 384 212" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Primary MF logo approved from the provided brand sheet -->
+  <g transform="translate(-72 -26) scale(1.5)">
+    <!-- White M structure -->
+    <polygon
+      points="72,36 155,108 226,65 211,52 153,108 95,84 95,167 72,167"
+      fill="#FFFFFF"
+    />
+
+    <!-- White F structure -->
+    <polygon
+      points="304,71 244,71 215,100 215,167 236,167 236,93 286,91"
+      fill="#FFFFFF"
+    />
+
+    <!-- Cyan upper accent -->
+    <polygon
+      points="212,51 227,65 244,47 311,47 328,26 238,26"
+      fill="#00C8FF"
+    />
+
+    <!-- Cyan lower accent -->
+    <polygon
+      points="199,117 176,139 184,167"
+      fill="#00C8FF"
+    />
+  </g>
+</svg>
