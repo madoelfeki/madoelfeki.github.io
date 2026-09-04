@@ -1157,10 +1157,6 @@ button {
         gap: 5px;
     }
 
-    .project h3 {
-        font-size: 20px;
-    }
-
     .project-summary {
         font-size: 14px;
         line-height: 1.6;
@@ -1543,14 +1539,6 @@ footer {
         gap: 9px;
     }
 
-    .project {
-        align-items: flex-start;
-
-        padding: 20px;
-
-        gap: 18px;
-    }
-
     .project h3 {
         font-size: 19px;
     }
@@ -1626,10 +1614,23 @@ footer {
 }
 
 /* ========================================
-   RTL / ARABIC SUPPORT
-   Shared stylesheet — all languages use this file
+   TYPOGRAPHY / RTL / CONTACT / LANGUAGE
 ======================================== */
 
+/* Justified body text */
+.hero-subtitle,
+.about-content p,
+.card p,
+.approach-card p,
+.background-description,
+.project-summary,
+.project-highlights,
+.contact-copy p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Arabic / RTL */
 html[dir="rtl"] {
     direction: rtl;
 }
@@ -1690,43 +1691,37 @@ html[dir="rtl"] .contact-socials {
     justify-content: flex-start;
 }
 
-@media (max-width: 700px) {
-
-    html[dir="rtl"] .hero-actions {
-        justify-content: flex-start;
-    }
-
-    html[dir="rtl"] .project-action {
-        align-items: flex-start;
-    }
-
-    html[dir="rtl"] .footer-content {
-        text-align: center;
-    }
-}
-
-
-
-/* ========================================
-   RTL CONTACT VALUES
-======================================== */
-
-html[dir="rtl"] .contact-links > a .contact-value {
-    direction: ltr;
-    unicode-bidi: isolate;
-    display: block;
-
+/* RTL contact values */
+.contact-links > a .contact-value {
     color: #DCE3EC;
     font-size: 13px;
     font-weight: 400;
     letter-spacing: normal;
+}
 
+.contact-links > a:hover .contact-value {
+    color: #DCE3EC;
+}
+
+html[dir="rtl"] .contact-links > a .contact-value {
+    display: block;
+    direction: ltr;
+    unicode-bidi: isolate;
     text-align: right;
 }
 
-html[dir="rtl"] .contact-links > a:hover .contact-value {
-    color: #DCE3EC;
+html[dir="rtl"] .contact-links > a .contact-value:not([dir="ltr"]) {
+    direction: rtl;
+    text-align: right;
 }
+
+html[dir="rtl"] .contact-links > a > span:first-child {
+    color: var(--cyan);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: normal;
+}
+
 html[dir="rtl"] .contact-links > a bdi {
     direction: ltr;
     unicode-bidi: isolate;
@@ -1734,12 +1729,10 @@ html[dir="rtl"] .contact-links > a bdi {
     display: block;
 }
 
-
-/* ========================================
-   RTL MOBILE FIX
-======================================== */
-
 @media (max-width: 760px) {
+    .language-menu {
+        min-width: 145px;
+    }
 
     html[dir="rtl"] .contact-box {
         grid-template-columns: 1fr;
@@ -1759,108 +1752,35 @@ html[dir="rtl"] .contact-links > a bdi {
     }
 }
 
-
-/* ========================================
-   JUSTIFIED BODY TEXT
-======================================== */
-
-.hero-subtitle,
-.about-content p,
-.card p,
-.approach-card p,
-.background-description,
-.project-summary,
-.project-highlights,
-.contact-copy p {
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-/* Arabic */
-html[dir="rtl"] .hero-subtitle,
-html[dir="rtl"] .about-content p,
-html[dir="rtl"] .card p,
-html[dir="rtl"] .approach-card p,
-html[dir="rtl"] .background-description,
-html[dir="rtl"] .project-summary,
-html[dir="rtl"] .project-highlights,
-html[dir="rtl"] .contact-copy p {
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-
-/* ========================================
-   RTL CONTACT — FINAL
-======================================== */
-
-html[dir="rtl"] .contact-links > a .contact-value {
-    display: block;
-
-    direction: ltr;
-    unicode-bidi: isolate;
-
-    text-align: right;
-
-    color: var(--text-main);
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: normal;
-}
-
-/* Arabic WhatsApp text */
-html[dir="rtl"] .contact-links > a .contact-value:not([dir="ltr"]) {
-    direction: rtl;
-    text-align: right;
-}
-
-/* Keep the contact labels cyan */
-html[dir="rtl"] .contact-links > a > span:first-child {
-    color: var(--cyan);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: normal;
-}
-
-
-/* ========================================
-   CONTACT VALUES — ALL LANGUAGES
-======================================== */
-
-.contact-links > a .contact-value {
-    color: var(--text-main);
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: normal;
-}
-
-.contact-links > a:hover .contact-value {
-    color: var(--text-main);
-}
-
-
-/* Language Switcher */
-
+/* Language switcher */
 .language-switcher {
     position: relative;
+    flex: 0 0 auto;
     flex-shrink: 0;
+    min-width: 0;
 }
 
- > summary {
+.language-switcher > summary {
     list-style: none;
     cursor: pointer;
-    font-size: 21px;
-    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     padding: 5px;
     border-radius: 7px;
-    transition: transform var(--transition), background var(--transition);
+    font-size: 21px;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+        transform var(--transition),
+        background var(--transition);
 }
 
- > summary::-webkit-details-marker {
+.language-switcher > summary::-webkit-details-marker {
     display: none;
 }
 
- > summary:hover {
+.language-switcher > summary:hover {
     transform: scale(1.08);
     background: rgba(255, 255, 255, 0.05);
 }
@@ -1870,17 +1790,13 @@ html[dir="rtl"] .contact-links > a > span:first-child {
     top: calc(100% + 10px);
     right: 0;
     z-index: 1000;
-
     min-width: 155px;
     padding: 6px;
-
     display: grid;
     gap: 2px;
-
     background: rgba(8, 14, 27, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 10px;
-
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(14px);
 }
@@ -1889,15 +1805,15 @@ html[dir="rtl"] .contact-links > a > span:first-child {
     display: flex;
     align-items: center;
     gap: 9px;
-
     padding: 8px 10px;
-
-    color: var(--text-muted);
+    color: var(--text-muted, #98A5B5);
     font-size: 12px;
     font-weight: 500;
-
     border-radius: 7px;
-    transition: background var(--transition), color var(--transition);
+    white-space: nowrap;
+    transition:
+        background var(--transition),
+        color var(--transition);
 }
 
 .language-menu a:hover {
@@ -1915,30 +1831,140 @@ html[dir="rtl"] .language-menu {
     left: 0;
 }
 
-@media (max-width: 760px) {
-    .language-menu {
-        min-width: 145px;
-    }
-}
-
-
 .lang-flag {
     width: 22px;
     height: 15px;
     object-fit: cover;
     display: inline-block;
+    flex: 0 0 auto;
     vertical-align: middle;
     border-radius: 2px;
 }
 
-.language-switcher > summary {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+/* Mobile RTL actions */
+@media (max-width: 700px) {
+    html[dir="rtl"] .hero-actions {
+        justify-content: flex-start;
+    }
+
+    html[dir="rtl"] .project-action {
+        align-items: flex-start;
+    }
+
+    html[dir="rtl"] .footer-content {
+        text-align: center;
+    }
 }
 
-.language-menu a {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+/* Responsive header: keep branding, full navigation, and language switcher visible */
+@media (max-width: 900px) {
+    .nav {
+        min-height: 0;
+        padding-block: 10px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        column-gap: 10px;
+        row-gap: 8px;
+    }
+
+    .brand {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+    }
+
+    .brand-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+    }
+
+    .language-switcher {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        display: block;
+        width: max-content;
+        height: auto;
+        min-width: max-content;
+    }
+
+    .language-switcher > summary {
+        display: inline-flex;
+        width: auto;
+        min-width: 0;
+        height: auto;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 0;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        flex: 0 0 auto;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .language-menu {
+        top: calc(100% + 8px);
+    }
+}
+
+@media (max-width: 380px) {
+    .nav {
+        column-gap: 8px;
+        row-gap: 7px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .language-switcher > summary {
+        font-size: 18px;
+        padding: 4px;
+    }
+
+    .lang-flag {
+        width: 21px;
+        height: 14px;
+    }
+}
+
+/* Very small phones: prioritize all four navigation items */
+@media (max-width: 340px) {
+    .nav-links {
+        gap: 6px;
+        justify-content: space-between;
+    }
+
+    .nav-links a {
+        font-size: 9.5px;
+    }
+
+    .brand-name {
+        font-size: 11px;
+    }
+
+    .language-switcher > summary {
+        font-size: 17px;
+    }
 }
