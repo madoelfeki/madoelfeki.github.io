@@ -1,19 +1,32 @@
 async function downloadVCard() {
     try {
+        // Determine the website root.
+        const siteRoot = new URL(
+            "../".repeat(
+                window.location.pathname
+                    .split("/")
+                    .filter(Boolean)
+                    .length
+            ),
+            window.location.href
+        );
+
+        const photoUrl = new URL(
+            "mohammed-elfeki.png",
+            siteRoot
+        ).href;
+
         // Load the profile photo
-        const response = await fetch("mohammed-elfeki.png");
+        const response = await fetch(photoUrl);
 
         if (!response.ok) {
             throw new Error("Could not load profile photo.");
         }
 
-        // Read the original image
         const sourceBlob = await response.blob();
 
-        // Decode image
         const image = await createImageBitmap(sourceBlob);
 
-        // Create a small canvas for the contact photo
         const maxWidth = 240;
         const maxHeight = 300;
 
@@ -41,7 +54,6 @@ async function downloadVCard() {
             throw new Error("Could not create image canvas.");
         }
 
-        // Draw the resized image
         context.drawImage(
             image,
             0,
@@ -50,7 +62,6 @@ async function downloadVCard() {
             canvas.height
         );
 
-        // Convert to compressed JPEG
         const optimizedPhotoBlob = await new Promise(
             (resolve, reject) => {
 
@@ -73,7 +84,6 @@ async function downloadVCard() {
             }
         );
 
-        // Convert JPEG to Base64
         const base64Image = await new Promise(
             (resolve, reject) => {
 
@@ -110,7 +120,6 @@ async function downloadVCard() {
 
         image.close();
 
-        // Build vCard
         const vCard = [
             "BEGIN:VCARD",
             "VERSION:3.0",
@@ -120,7 +129,7 @@ async function downloadVCard() {
             "TITLE:Computer Engineer",
             "TEL;TYPE=CELL,VOICE:+201001313915",
             "EMAIL;TYPE=INTERNET:mohammed.feki@gmail.com",
-            "URL;TYPE=Portfolio:https://madoelfeki.github.io",
+            "URL;TYPE=Portfolio:https://madoelfeki.github.io/",
             "URL;TYPE=LinkedIn:https://www.linkedin.com/in/mohammedelfeki",
             "URL;TYPE=GitHub:https://github.com/madoelfeki",
             "URL;TYPE=WhatsApp:https://wa.me/201001313915",
@@ -131,7 +140,6 @@ async function downloadVCard() {
             "END:VCARD"
         ].join("\r\n");
 
-        // Create the downloadable contact file
         const vCardBlob = new Blob(
             [vCard],
             {
@@ -154,7 +162,9 @@ async function downloadVCard() {
 
         document.body.removeChild(link);
 
-        URL.revokeObjectURL(url);
+        setTimeout(() => {
+            URL.revokeObjectURL(url);
+        }, 1000);
 
     } catch (error) {
 
