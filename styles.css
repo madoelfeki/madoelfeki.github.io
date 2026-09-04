@@ -1920,3 +1920,25 @@ html[dir="rtl"] .language-menu {
         min-width: 145px;
     }
 }
+
+
+.lang-flag {
+    width: 22px;
+    height: 15px;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.language-switcher > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.language-menu a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
