@@ -1705,3 +1705,25 @@ html[dir="rtl"] .contact-socials {
     }
 }
 
+
+
+/* ========================================
+   RTL CONTACT VALUES
+======================================== */
+
+html[dir="rtl"] .contact-links > a .contact-value {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: block;
+
+    color: #DCE3EC;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+
+    text-align: right;
+}
+
+html[dir="rtl"] .contact-links > a:hover .contact-value {
+    color: #DCE3EC;
+}
