@@ -1942,3 +1942,18 @@ html[dir="rtl"] .language-menu {
     align-items: center;
     gap: 9px;
 }
+
+@media (max-width: 760px) {
+    .language-switcher {
+        display: block !important;
+        flex-shrink: 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+    }
+
+    .language-switcher > summary {
+        display: inline-flex !important;
+        width: auto !important;
+        min-width: 0 !important;
+    }
+}
