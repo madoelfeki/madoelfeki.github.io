@@ -1727,3 +1727,9 @@ html[dir="rtl"] .contact-links > a .contact-value {
 html[dir="rtl"] .contact-links > a:hover .contact-value {
     color: #DCE3EC;
 }
+html[dir="rtl"] .contact-links > a bdi {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    display: block;
+}
