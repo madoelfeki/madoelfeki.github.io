@@ -178,3 +178,6 @@ async function downloadVCard() {
         );
     }
 }
+
+document.getElementById("save-contact")
+  ?.addEventListener("click", downloadVCard);
