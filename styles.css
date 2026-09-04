@@ -1788,3 +1788,36 @@ html[dir="rtl"] .contact-copy p {
     text-align: justify;
     text-justify: inter-word;
 }
+
+
+/* ========================================
+   RTL CONTACT — FINAL
+======================================== */
+
+html[dir="rtl"] .contact-links > a .contact-value {
+    display: block;
+
+    direction: ltr;
+    unicode-bidi: isolate;
+
+    text-align: right;
+
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+/* Arabic WhatsApp text */
+html[dir="rtl"] .contact-links > a .contact-value:not([dir="ltr"]) {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Keep the contact labels cyan */
+html[dir="rtl"] .contact-links > a > span:first-child {
+    color: var(--cyan);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: normal;
+}
