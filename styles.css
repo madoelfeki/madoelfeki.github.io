@@ -1821,3 +1821,19 @@ html[dir="rtl"] .contact-links > a > span:first-child {
     font-weight: 800;
     letter-spacing: normal;
 }
+
+
+/* ========================================
+   CONTACT VALUES — ALL LANGUAGES
+======================================== */
+
+.contact-links > a .contact-value {
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+.contact-links > a:hover .contact-value {
+    color: var(--text-main);
+}
