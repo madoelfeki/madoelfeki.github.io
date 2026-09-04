@@ -1624,3 +1624,84 @@ footer {
         font-size: 33px;
     }
 }
+
+/* ========================================
+   RTL / ARABIC SUPPORT
+   Shared stylesheet — all languages use this file
+======================================== */
+
+html[dir="rtl"] {
+    direction: rtl;
+}
+
+html[dir="rtl"] body {
+    font-family:
+        "Noto Sans Arabic",
+        "IBM Plex Sans Arabic",
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+}
+
+html[dir="rtl"] .section-label,
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .brand-name,
+html[dir="rtl"] .project-type,
+html[dir="rtl"] .project-status,
+html[dir="rtl"] .background-type,
+html[dir="rtl"] .contact-links > a span,
+html[dir="rtl"] .project-highlights span,
+html[dir="rtl"] .about-meta span {
+    letter-spacing: normal;
+}
+
+html[dir="rtl"] .hero-content,
+html[dir="rtl"] .about-content,
+html[dir="rtl"] .card,
+html[dir="rtl"] .approach-card,
+html[dir="rtl"] .background-card,
+html[dir="rtl"] .project-main,
+html[dir="rtl"] .contact-box {
+    text-align: right;
+}
+
+html[dir="rtl"] .hero-actions {
+    justify-content: flex-start;
+}
+
+html[dir="rtl"] .project:hover {
+    transform: translateX(-3px);
+}
+
+html[dir="rtl"] .project-action {
+    align-items: flex-start;
+}
+
+html[dir="rtl"] .project-topline {
+    direction: rtl;
+}
+
+html[dir="rtl"] .contact-links > a {
+    text-align: right;
+}
+
+html[dir="rtl"] .contact-socials {
+    justify-content: flex-start;
+}
+
+@media (max-width: 700px) {
+
+    html[dir="rtl"] .hero-actions {
+        justify-content: flex-start;
+    }
+
+    html[dir="rtl"] .project-action {
+        align-items: flex-start;
+    }
+
+    html[dir="rtl"] .footer-content {
+        text-align: center;
+    }
+}
+
