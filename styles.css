@@ -1957,3 +1957,26 @@ html[dir="rtl"] .language-menu {
         min-width: 0 !important;
     }
 }
+
+@media (max-width: 760px) {
+    .container nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .language-switcher {
+        display: block !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        height: auto !important;
+        min-width: 65px !important;
+    }
+
+    .language-switcher > summary {
+        display: inline-flex !important;
+        align-items: center;
+        width: auto !important;
+        height: auto !important;
+    }
+}
