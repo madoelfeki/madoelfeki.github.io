@@ -1758,3 +1758,33 @@ html[dir="rtl"] .contact-links > a bdi {
         width: 100%;
     }
 }
+
+
+/* ========================================
+   JUSTIFIED BODY TEXT
+======================================== */
+
+.hero-subtitle,
+.about-content p,
+.card p,
+.approach-card p,
+.background-description,
+.project-summary,
+.project-highlights,
+.contact-copy p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Arabic */
+html[dir="rtl"] .hero-subtitle,
+html[dir="rtl"] .about-content p,
+html[dir="rtl"] .card p,
+html[dir="rtl"] .approach-card p,
+html[dir="rtl"] .background-description,
+html[dir="rtl"] .project-summary,
+html[dir="rtl"] .project-highlights,
+html[dir="rtl"] .contact-copy p {
+    text-align: justify;
+    text-justify: inter-word;
+}
