@@ -1733,3 +1733,28 @@ html[dir="rtl"] .contact-links > a bdi {
     text-align: left;
     display: block;
 }
+
+
+/* ========================================
+   RTL MOBILE FIX
+======================================== */
+
+@media (max-width: 760px) {
+
+    html[dir="rtl"] .contact-box {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    html[dir="rtl"] .contact-links {
+        width: 100%;
+    }
+
+    html[dir="rtl"] .contact-links > a bdi {
+        direction: ltr;
+        unicode-bidi: isolate;
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+}
